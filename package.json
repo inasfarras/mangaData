@@ -1,14 +1,22 @@
 {
   "name": "manga-tracker",
   "version": "1.0.0",
-  "description": "Manga/Manhwa tracking application",
+  "description": "Track your manga reading progress",
   "scripts": {
-    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
-    "dev:frontend": "cd frontend && npm run dev",
     "dev:backend": "cd backend && npm run dev",
-    "build": "cd frontend && npm run build",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm install && npm run build",
     "start": "cd backend && npm start"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "manga",
+    "tracker",
+    "react",
+    "express"
+  ],
   "author": "",
   "license": "ISC"
 } 

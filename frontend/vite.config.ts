@@ -11,10 +11,14 @@ export default defineConfig({
     emptyOutDir: true,
   },
   server: {
+    host: true, // Expose to all network interfaces
+    port: 5174,
+    strictPort: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3000',
         changeOrigin: true,
+        secure: false,
       },
     },
   },

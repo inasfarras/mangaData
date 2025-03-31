@@ -8,10 +8,15 @@ import sqlRoutes from './routes/sql';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = Number(process.env.PORT) || 3000;
 
-// Middleware
-app.use(cors());
+// Configure CORS to accept requests from any origin during development
+app.use(cors({
+  origin: '*', // In production, you should specify your frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json());
 
 // Supabase client initialization
@@ -31,6 +36,6 @@ app.use('/api/manga', mangaRoutes);
 app.use('/api/sql', sqlRoutes);
 
 // Start server
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server is running on http://0.0.0.0:${port}`);
 }); 

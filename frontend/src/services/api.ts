@@ -1,14 +1,15 @@
 import axios from 'axios'
+import { config } from '../config'
 
-// Create axios instance with the backend URL
+// Create axios instance with base URL from config
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: config.apiUrl,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// Add logging interceptor
+// Add request interceptor for logging
 api.interceptors.request.use(
   (config) => {
     console.log('API Request:', config.method?.toUpperCase(), config.url);
@@ -20,13 +21,14 @@ api.interceptors.request.use(
   }
 );
 
+// Add response interceptor for logging
 api.interceptors.response.use(
   (response) => {
     console.log('API Response:', response.status, response.data);
     return response;
   },
   (error) => {
-    console.error('API Response Error:', error.response || error);
+    console.error('API Error:', error.response?.status, error.response?.data);
     return Promise.reject(error);
   }
 );
